@@ -102,7 +102,8 @@ func_install_letsencrypt(){
   echo '[Success] letsencrypt is built!'
   cd /opt/letsencrypt
   echo '[Starting] to build letsencrypt cert!'
-  ./letsencrypt-auto --apache -d $domain -n --register-unsafely-without-email --agree-tos 
+  #./letsencrypt-auto --apache -d $domain -n --register-unsafely-without-email --agree-tos 
+  certbot --apache -d $domain -n --register-unsafely-without-email --agree-tos
   if [ -e /etc/letsencrypt/live/$domain/fullchain.pem ]; then
     echo '[Success] letsencrypt certs are built!'
     service apache2 stop
